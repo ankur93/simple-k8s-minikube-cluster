@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-promo-service
+  labels:
+    app: promo-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: promo-service
+  template:
+    metadata:
+      name: promo-service
+      labels:
+        app: promo-service
+    spec:
+      containers:
+        - name: promo-container
+          image: path/to/docker/image
+          env:
+          - name: ORACLE_USERNAME
+            value: supplier_order
+          - name: SPRING_PROFILES_ACTIVE
+            value: stg
+          - name: ORACLE_PASSWORD
+            value: XXXXXXXX
+          - name: OAUTH_PROMOTIONS_CLIENT_SECRET
+            value: XXXXXXXX
+          - name: OAUTH_PROMOTIONS_CLIENT_NAME
+            value: XXXXXXXX
+          - name: COUCHBASE_USERNAME
+            value: XXXXXXXX
+          - name: COUCHBASE_PASSWORD
+            value: XXXXXXXX
+      imagePullSecrets:
+        - name: my-secret
+
+

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-promo-app
+  labels:
+    app: promo-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: promo-app
+  template:
+    metadata:
+      name: promo-app
+      labels:
+        app: promo-app
+    spec:
+      containers:
+        - name: promo-app-container
+          image: path/to/docker/image
+          env:
+          - name: REACT_APP_BEFFE
+            value: http://localhost:8081
+          - name: REACT_APP_ONE_LOGIN
+            value: path/to/one/login/instance
+      imagePullSecrets:
+        - name: my-secret
+
+

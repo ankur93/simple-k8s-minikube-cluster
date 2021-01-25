@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: promo-service-service
+spec:
+  type: NodePort
+  ports:
+    - nodePort: 30080
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: promo-service
